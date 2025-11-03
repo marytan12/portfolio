@@ -3,325 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario Rodriguez Guerra - Portfolio</title>
-    <!-- Carga de Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Carga de la fuente Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Portafolio | Mario Rodriguez Guerra</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              // Fuente principal 'Inter'
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              // Paleta de colores personalizada según los requisitos
+              'neon-green': '#10b981', // Verde neón de acento
+              'base-bg': '#0a0a0a',     // Fondo principal oscuro
+              'base-text': '#e5e5e5',   // Texto principal claro
+              'base-text-light': '#d4d4d4', // Texto secundario
+              'card-bg': '#1a1a1a',     // Fondo para tarjetas (ligeramente más claro que el fondo)
+              'border-gray': '#262626', // Bordes sutiles
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Estilos base -->
     <style>
-        /* Aplicamos la fuente Inter a todo el documento */
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.4) 0%, transparent 40%),
-                        radial-gradient(circle at bottom right, rgba(2, 6, 23, 0.4) 0%, transparent 50%),
-                        #0a0a0a; /* Fondo muy oscuro, casi negro */
-            background-attachment: fixed; /* Mantiene el gradiente fijo al hacer scroll */
-        }
-        .project-card-link {
-            /* Estilos base para las tarjetas de proyecto (que ahora son enlaces) */
-            @apply relative block bg-zinc-800/50 backdrop-blur-md border border-zinc-700 shadow-2xl rounded-2xl p-6 transform transition-all duration-300 ease-in-out group;
-            /* Pseudo-elemento para el reflejo */
-            overflow: hidden; /* Asegura que el pseudo-elemento no se salga */
-        }
-        .project-card-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.0) 50%,
-                rgba(255, 255, 255, 0.05) 100%
-            );
-            pointer-events: none;
-            z-index: 1; /* Asegura que el reflejo esté sobre el contenido base de la tarjeta */
-        }
-        .project-card-link:hover {
-            @apply shadow-3xl scale-[1.02] bg-zinc-700/60 border-zinc-500;
-        }
-
-        /* Estilo para los enlaces de texto con un ligero brillo */
-        .text-link {
-            @apply text-zinc-300 hover:text-white transition-colors duration-200 ease-in-out;
-        }
-        
-        /* Estilo para los enlaces sociales */
-        .social-link {
-             @apply text-zinc-400 hover:text-white transition-colors duration-200 ease-in-out;
-        }
-
-        /* Ajuste para la barra de navegación para que se vea más integrada */
-        .navbar-blur {
-            @apply bg-zinc-900/80 backdrop-blur-xl border-b border-zinc-700/50 shadow-lg;
-        }
-
-        /* Estilos para el footer */
-        .footer-border {
-            @apply border-t border-zinc-800;
-        }
-
-        /* Ajustes para el texto general para un mejor contraste en modo oscuro */
-        .text-header {
-            @apply text-zinc-100;
-        }
-        .text-paragraph {
-            @apply text-zinc-400;
-        }
-        .text-small {
-            @apply text-zinc-500;
-        }
-
-        /* Estilo para las etiquetas (tags) del proyecto */
-        .project-tag {
-            @apply inline-block bg-zinc-800 text-zinc-300 text-xs font-medium px-3 py-1 rounded-full;
-        }
-
-        /* Estilos del Eje Cronológico (Timeline) */
-        .timeline-container {
-            position: relative;
-            padding-left: 2rem; /* Espacio para la línea y los puntos */
-        }
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.25rem; /* Ajuste para alinear con el primer punto */
-            bottom: 0.25rem; /* Ajuste para alinear con el último punto */
-            width: 2px;
-            background-color: #3f3f46; /* zinc-700 */
-            margin-left: 7px; /* Centra la línea de 2px con el punto de 1rem (16px) */
-        }
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2.5rem; /* Espacio entre items */
-        }
-        .timeline-item:last-child {
-            padding-bottom: 0; /* Sin espacio extra al final */
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2rem; /* Coincide con el padding-left del container */
-            top: 0.375rem; /* 6px (para centrar verticalmente con el texto h4) */
-            width: 1rem; /* 16px */
-            height: 1rem; /* 16px */
-            background-color: #a1a1aa; /* zinc-400 */
-            border-radius: 9999px; /* rounded-full */
-            border: 3px solid #0a0a0a; /* bg-zinc-900 (el fondo real) */
-            z-index: 10;
-        }
+      body {
+        background-color: #0a0a0a;
+        color: #e5e5e5;
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /* Estilo para los iconos de Lucide */
+      .lucide {
+        width: 1.25rem; /* 20px */
+        height: 1.25rem; /* 20px */
+        stroke-width: 2;
+      }
     </style>
 </head>
-<body class="bg-zinc-900 text-zinc-100">
+<body class="bg-base-bg text-base-text">
 
-    <!-- Contenedor Principal --><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Header y Navegación --><header class="sticky top-0 navbar-blur z-10">
-            <nav class="flex justify-between items-center py-5">
-                <!-- Tu nombre o logo --><h1 class="text-xl font-bold text-text-header">
-                    Mario R. Guerra
-                </h1>
-                <!-- Enlaces de navegación --><div class="space-x-4 sm:space-x-6">
-                    <a href="#proyectos-personales" class="text-sm sm:text-base font-medium text-zinc-400 hover:text-white transition-colors duration-200">Proyectos</a>
-                    <a href="#formacion-experiencia" class="text-sm sm:text-base font-medium text-zinc-400 hover:text-white transition-colors duration-200">Experiencia</a>
-                    <a href="#sobre-mi" class="text-sm sm:text-base font-medium text-zinc-400 hover:text-white transition-colors duration-200">Sobre mí</a>
-                    <a href="#contacto" class="text-sm sm:text-base font-medium text-zinc-400 hover:text-white transition-colors duration-200">Contacto</a>
+    <!-- ===== HEADER / NAVEGACIÓN ===== -->
+    <header class="sticky top-0 z-50 w-full backdrop-blur-lg bg-base-bg/80 border-b border-border-gray">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo o Nombre (Opcional, omitido para centrarse en enlaces) -->
+                <div class="flex-shrink-0">
+                    <a href="#inicio" class="text-2xl font-bold text-white">
+                        MRG
+                    </a>
                 </div>
-            </nav>
-        </header>
+                
+                <!-- Enlaces de Navegación (Escritorio) -->
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="#inicio" class="px-3 py-2 rounded-md text-sm font-medium text-neon-green hover:text-white transition-colors duration-200">Inicio</a>
+                    <a href="#proyectos" class="px-3 py-2 rounded-md text-sm font-medium text-base-text-light hover:text-neon-green transition-colors duration-200">Proyectos</a>
+                    <a href="#experiencia" class="px-3 py-2 rounded-md text-sm font-medium text-base-text-light hover:text-neon-green transition-colors duration-200">Experiencia</a>
+                    <a href="#sobre-mi" class="px-3 py-2 rounded-md text-sm font-medium text-base-text-light hover:text-neon-green transition-colors duration-200">Sobre Mí</a>
+                    <a href="#contacto" class="px-3 py-2 rounded-md text-sm font-medium text-base-text-light hover:text-neon-green transition-colors duration-200">Contacto</a>
+                </div>
+                
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-neon-green hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neon-green" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Abrir menú principal</span>
+                        <i id="menu-icon-open" data-lucide="menu"></i>
+                        <i id="menu-icon-close" data-lucide="x" class="hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Menú Móvil (Oculto por defecto) -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-border-gray">
+                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-neon-green">Inicio</a>
+                <a href="#proyectos" class="block px-3 py-2 rounded-md text-base font-medium text-base-text-light hover:text-neon-green">Proyectos</a>
+                <a href="#experiencia" class="block px-3 py-2 rounded-md text-base font-medium text-base-text-light hover:text-neon-green">Experiencia</a>
+                <a href="#sobre-mi" class="block px-3 py-2 rounded-md text-base font-medium text-base-text-light hover:text-neon-green">Sobre Mí</a>
+                <a href="#contacto" class="block px-3 py-2 rounded-md text-base font-medium text-base-text-light hover:text-neon-green">Contacto</a>
+            </div>
+        </div>
+    </header>
 
-        <!-- Sección Hero (Inicio) --><main>
-            <section id="inicio" class="text-left py-24 sm:py-32">
-                <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight text-text-header">
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        
+        <!-- ===== SECCIÓN INICIO (HERO) ===== -->
+        <section id="inicio" class="min-h-screen flex items-center justify-center text-center px-4 py-20">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight">
                     Mario Rodriguez Guerra
                 </h1>
-                <p class="mt-4 text-xl text-zinc-400">
+                <p class="mt-4 text-2xl sm:text-3xl md:text-4xl font-medium text-neon-green">
                     Técnico de Sistemas y Desarrollador Web
                 </p>
+                
                 <!-- Enlaces Sociales -->
-                <div class="mt-8 flex gap-6">
-                    <a href="mailto:mariogrd3@gmail.com" class="social-link flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        Email
+                <div class="mt-10 flex justify-center items-center space-x-8">
+                    <a href="mailto:mariogrd3@gmail.com" class="text-neon-green hover:text-white transition-transform duration-200 hover:scale-110" title="Email">
+                        <i data-lucide="mail" class="w-7 h-7"></i>
                     </a>
-                    <a href="#" class="social-link flex items-center gap-2"> <!-- REEMPLAZA # CON TU LINK DE GITHUB -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.82 1.23.82.71 1.21 1.87.86 2.33.66.07-.51.28-.86.51-1.06-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                        GitHub
+                    <a href="https://github.com/tu-usuario-github" target="_blank" rel="noopener noreferrer" class="text-neon-green hover:text-white transition-transform duration-200 hover:scale-110" title="GitHub">
+                        <!-- Rellena tu URL de GitHub arriba -->
+                        <i data-lucide="github" class="w-7 h-7"></i>
                     </a>
-                    <a href="#" class="social-link flex items-center gap-2"> <!-- REEMPLAZA # CON TU LINK DE LINKEDIN -->
-                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.838 0 1.358-.554 1.358-1.248-.015-.708-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.305 0-1.85.723-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                        </svg>
-                        LinkedIn
+                    <a href="https://linkedin.com/in/tu-usuario-linkedin" target="_blank" rel="noopener noreferrer" class="text-neon-green hover:text-white transition-transform duration-200 hover:scale-110" title="LinkedIn">
+                        <!-- Rellena tu URL de LinkedIn arriba -->
+                        <i data-lucide="linkedin" class="w-7 h-7"></i>
                     </a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Sección Proyectos Personales --><section id="proyectos-personales" class="py-16 sm:py-24 border-t border-zinc-800">
-                <h2 class="text-3xl font-bold mb-12 text-text-header">
+        <!-- ===== SECCIÓN PROYECTOS ===== -->
+        <section id="proyectos" class="py-20 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16">
+                    Proyectos
+                </h2>
+                
+                <!-- Subsección: Proyectos Personales -->
+                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left">
                     Proyectos Personales
-                </h2>
-                <!-- Lista de Proyectos Personales --><div class="grid grid-cols-1 gap-8">
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     
-                    <!-- Proyecto 1: Spotif-sooty --><a href="https://Spotif-sooty.vercel.app" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                        <span class="absolute top-6 right-6 text-zinc-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">&rarr;</span>
-                        <div>
-                            <h3 class="text-xl font-bold text-text-header">Spotif-sooty</h3>
-                            <p class="text-zinc-400 mt-2">Aplicación web personal que interactúa con la API de Spotify para visualización y gestión de música, ofreciendo una experiencia personalizada.</p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="project-tag">Desarrollo Web</span>
-                                <span class="project-tag">API</span>
-                                <span class="project-tag">React (Suposición)</span>
-                            </div>
+                    <!-- Proyecto 1: Spotif-sooty -->
+                    <a href="https://Spotif-sooty.vercel.app" target="_blank" rel="noopener noreferrer" class="group block bg-card-bg p-6 rounded-lg border border-border-gray transition-all duration-300 hover:border-neon-green hover:shadow-2xl hover:shadow-neon-green/10 transform hover:-translate-y-1">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-neon-green transition-colors">Spotif-sooty</h4>
+                        <p class="text-base-text-light mb-4">
+                            Aplicación web personal que interactúa con la API de Spotify para visualización y gestión de música, ofreciendo una experiencia personalizada.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-medium px-3 py-1 rounded-full">Desarrollo Web</span>
+                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-medium px-3 py-1 rounded-full">API</span>
+                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-medium px-3 py-1 rounded-full">React</span>
                         </div>
                     </a>
                     
-                    <!-- Proyecto 2: Flowtur --><a href="https://flowtur.es" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                        <span class="absolute top-6 right-6 text-zinc-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">&rarr;</span>
-                        <div>
-                            <h3 class="text-xl font-bold text-text-header">Flowtur.es</h3>
-                            <p class="text-zinc-400 mt-2">Creación y desarrollo de la web profesional para Flowtur. Encargado del diseño, desarrollo y mantenimiento completo de la plataforma.</p>
-                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="project-tag">Desarrollo Web</span>
-                                <span class="project-tag">Diseño Web</span>
-                            </div>
+                    <!-- Proyecto 2: Flowtur.es -->
+                    <a href="https://flowtur.es" target="_blank" rel="noopener noreferrer" class="group block bg-card-bg p-6 rounded-lg border border-border-gray transition-all duration-300 hover:border-neon-green hover:shadow-2xl hover:shadow-neon-green/10 transform hover:-translate-y-1">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-neon-green transition-colors">Flowtur.es</h4>
+                        <p class="text-base-text-light mb-4">
+                            Creación y desarrollo de la web profesional para Flowtur. Encargado del diseño, desarrollo y mantenimiento completo de la plataforma.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-medium px-3 py-1 rounded-full">Desarrollo Web</span>
+                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-medium px-3 py-1 rounded-full">Diseño Web</span>
                         </div>
                     </a>
-
                 </div>
-            </section>
-
-            <!-- Sección Otros Proyectos --><section id="otros-proyectos" class="py-16 sm:py-24 border-t border-zinc-800">
-                <h2 class="text-3xl font-bold mb-12 text-text-header">
+                
+                <!-- Subsección: Otros Proyectos -->
+                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left">
                     Otros Proyectos
-                </h2>
-                <div class="grid grid-cols-1 gap-8">
-                    <!-- Proyecto 3: Servidor Videojuego --><div class="project-card-link cursor-default"> <!-- No es un enlace, pero mantiene el estilo -->
-                        <h3 class="text-xl font-bold text-text-header">Administrador de Servidor GTA 5</h3>
-                        <p class="text-zinc-400 mt-2">Creación, configuración y administración de un servidor de videojuego (GTA 5 FiveM), incluyendo gestión de comunidad, mantenimiento técnico y desarrollo de scripts personalizados.</p>
-                         <div class="mt-4 flex flex-wrap gap-2">
-                            <span class="project-tag">Gestión de Servidor</span>
-                            <span class="project-tag">FiveM</span>
-                            <span class="project-tag">Comunidad</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Proyecto 3: Servidor GTA 5 -->
+                    <div class="group bg-card-bg p-6 rounded-lg border border-border-gray transition-all duration-300 hover:border-neon-green hover:shadow-2xl hover:shadow-neon-green/10 transform hover:-translate-y-1">
+                        <h4 class="text-xl font-bold text-white mb-2">Administrador de Servidor GTA 5</h4>
+                        <p class="text-base-text-light mb-4">
+                            Creación, configuración y administración de un servidor de videojuego (GTA 5 FiveM), incluyendo gestión de comunidad, mantenimiento técnico y desarrollo de scripts personalizados.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-medium px-3 py-1 rounded-full">Gestión de Servidor</span>
+                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-medium px-3 py-1 rounded-full">FiveM</span>
+                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-medium px-3 py-1 rounded-full">Comunidad</span>
                         </div>
                     </div>
                 </div>
-            </section>
-
-
-            <!-- Sección Formación y Experiencia --><section id="formacion-experiencia" class="py-16 sm:py-24 border-t border-zinc-800">
-                <h2 class="text-3xl font-bold text-center mb-16 text-text-header">
-                    Formación y Experiencia
+            </div>
+        </section>
+        
+        <!-- ===== SECCIÓN EXPERIENCIA Y FORMACIÓN ===== -->
+        <section id="experiencia" class="py-20 sm:py-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16">
+                    Experiencia y Formación
                 </h2>
-                <div class="max-w-2xl mx-auto timeline-container"> <!-- Contenedor del eje -->
+                
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-border-gray ml-4 sm:ml-0">
                     
-                    <!-- Item 1: Prácticas -->
-                    <div class="timeline-item">
-                        <p class="text-sm text-text-small">Previsto Feb. 2026</p>
-                        <h4 class="font-semibold text-text-header mt-1">Prácticas SMR (510 Horas)</h4>
-                        <p class="text-text-paragraph text-sm">Experiencia profesional (prácticas)</p>
+                    <!-- Item 1: Prácticas SMR -->
+                    <div class="mb-10 ml-10">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-black"></i>
+                        </span>
+                        <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
+                            Prácticas SMR (510 Horas)
+                            <span class="bg-neon-green/10 text-neon-green text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
+                        </h3>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400">Previsto Feb. 2026</time>
+                        <p class="mb-4 text-base font-normal text-base-text-light">Experiencia profesional (prácticas) como parte del grado medio.</p>
                     </div>
 
-                    <!-- Item 2: Flowtur -->
-                    <div class="timeline-item">
-                        <p class="text-sm text-text-small">Jun. 2025 - Actual</p>
-                        <h4 class="font-semibold text-text-header mt-1">Desarrollador Web (Flowtur.es)</h4>
-                        <p class="text-text-paragraph text-sm">Experiencia profesional</p>
+                    <!-- Item 2: Flowtur.es -->
+                    <div class="mb-10 ml-10">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-black"></i>
+                        </span>
+                        <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
+                            Desarrollador Web (Flowtur.es)
+                            <span class="bg-neon-green/10 text-neon-green text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
+                        </h3>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400">Jun. 2025 - Actual</time>
+                        <p class="mb-4 text-base font-normal text-base-text-light">Desarrollo y mantenimiento de la plataforma web profesional Flowtur.es.</p>
                     </div>
 
-                    <!-- Item 3: Admin GTA -->
-                    <div class="timeline-item">
-                        <p class="text-sm text-text-small">Actual</p>
-                        <h4 class="font-semibold text-text-header mt-1">Administrador Servidor Videojuego</h4>
-                        <p class="text-text-paragraph text-sm">Gestión de servidor GTA 5. Experiencia.</p>
+                    <!-- Item 3: Admin Servidor GTA -->
+                    <div class="mb-10 ml-10">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-black"></i>
+                        </span>
+                        <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
+                            Administrador Servidor Videojuego
+                            <span class="bg-neon-green/10 text-neon-green text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
+                        </h3>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400">Actual</time>
+                        <p class="mb-4 text-base font-normal text-base-text-light">Gestión de servidor GTA 5 (FiveM) y comunidad.</p>
                     </div>
 
-                    <!-- Item 4: Google AI -->
-                    <div class="timeline-item">
-                        <p class="text-sm text-text-small">Abr. 2025</p>
-                        <h4 class="font-semibold text-text-header mt-1">Google: Inteligencia Artificial y productividad</h4>
-                        <p class="text-text-paragraph text-sm">Santander Open Academy. Formación.</p>
+                    <!-- Item 4: Google IA -->
+                    <div class="mb-10 ml-10">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
+                            <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                        </span>
+                        <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
+                            Google: Inteligencia Artificial y productividad
+                            <span class="bg-blue-900/50 text-blue-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
+                        </h3>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400">Abr. 2025</time>
+                        <p class="mb-4 text-base font-normal text-base-text-light">Santander Open Academy.</p>
                     </div>
 
                     <!-- Item 5: CFGM SMR -->
-                    <div class="timeline-item">
-                        <p class="text-sm text-text-small">Sep. 2024 - Actual</p>
-                        <h4 class="font-semibold text-text-header mt-1">CFGM Técnico en Sistemas Microinformáticos y Redes</h4>
-                        <p class="text-text-paragraph text-sm">Centro Didáctico de Formación Integral S.L. Formación.</p>
+                    <div class="mb-10 ml-10">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
+                            <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                        </span>
+                        <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
+                            CFGM Técnico en Sistemas Microinformáticos y Redes
+                            <span class="bg-blue-900/50 text-blue-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
+                        </h3>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400">Sep. 2024 - Actual</time>
+                        <p class="mb-4 text-base font-normal text-base-text-light">Centro Didáctico de Formación Integral S.L.</p>
                     </div>
 
                     <!-- Item 6: PRL -->
-                    <div class="timeline-item">
-                        <p class="text-sm text-text-small">Sep. 2024 - Feb. 2025</p>
-                        <h4 class="font-semibold text-text-header mt-1">Curso Básico de Prevención de Riesgos Laborales</h4>
-                        <p class="text-text-paragraph text-sm">Centro Didáctico de Formación Integral S.L. Formación.</p>
+                    <div class="ml-10">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
+                            <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                        </span>
+                        <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
+                            Curso Básico de Prevención de Riesgos Laborales
+                            <span class="bg-blue-900/50 text-blue-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
+                        </h3>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400">Sep. 2024 - Feb. 2025</time>
+                        <p class="mb-4 text-base font-normal text-base-text-light">Centro Didáctico de Formación Integral S.L.</p>
                     </div>
-
+                    
                 </div>
-            </section>
-            
-            <!-- Sección Sobre Mí --><section id="sobre-mi" class="py-16 sm:py-24 border-t border-zinc-800">
-                <h2 class="text-3xl font-bold mb-8 text-text-header">
+            </div>
+        </section>
+        
+        <!-- ===== SECCIÓN SOBRE MÍ ===== -->
+        <section id="sobre-mi" class="py-20 sm:py-24 bg-card-bg">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <!-- Acento decorativo -->
+                <div class="relative w-24 h-1 bg-neon-green rounded-full mx-auto mb-8"></div>
+                
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-8">
                     Sobre Mí
                 </h2>
-                <div class="max-w-none"> <!-- Quitamos max-w-2xl para que ocupe el ancho del contenedor padre -->
-                    <p class="text-lg text-text-paragraph leading-relaxed">
-                        Soy un estudiante de 18 años cursando el <strong>Grado Medio en Sistemas Microinformáticos y Redes</strong>. Mi objetivo es continuar mi formación con un Grado Superior en Administración de Sistemas Informáticos en Red.
-                        <br><br>
-                        Me considero una persona <strong>puntual, detallista y con buenas habilidades de comunicación</strong>. Me apasiona la tecnología, el desarrollo de aplicaciones y la administración de sistemas, buscando siempre aprender y aplicar nuevos conocimientos.
-                    </F>
-                </div>
-            </section>
-
-            <!-- Sección Contacto --><section id="contacto" class="py-16 sm:py-24 border-t border-zinc-800 text-center">
-                <h2 class="text-3xl font-bold mb-4 text-text-header">
-                    Hablemos
-                </h2>
-                <p class="text-lg text-zinc-400 mb-8 max-w-lg mx-auto">
-                    Estoy disponible para nuevas oportunidades y colaboraciones.
+                
+                <p class="text-lg sm:text-xl text-base-text-light leading-relaxed mb-6">
+                    Soy un estudiante de 18 años cursando el Grado Medio en Sistemas Microinformáticos y Redes. Mi objetivo es continuar mi formación con un Grado Superior en Administración de Sistemas Informáticos en Red.
                 </p>
+                <p class="text-lg sm:text-xl text-base-text-light leading-relaxed">
+                    Me considero una persona puntual, detallista y con buenas habilidades de comunicación. Me apasiona la tecnología, el desarrollo de aplicaciones y la administración de sistemas, buscando siempre aprender y aplicar nuevos conocimientos.
+                </p>
+            </div>
+        </section>
+        
+        <!-- ===== SECCIÓN CONTACTO ===== -->
+        <section id="contacto" class="py-20 sm:py-24">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-6">
+                    Contacto
+                </h2>
+                <p class="text-lg sm:text-xl text-base-text-light mb-12">
+                    Estoy buscando activamente nuevas oportunidades y me encantaría saber de ti.
+                </p>
+                
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-                    <!-- Email --><a href="mailto:mariogrd3@gmail.com" class="social-link flex items-center text-lg gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                        <span>mariogrd3@gmail.com</span>
+                    <!-- Botón Email -->
+                    <a href="mailto:mariogrd3@gmail.com" class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-neon-green text-base-bg font-bold rounded-lg shadow-lg shadow-neon-green/10 transition-transform duration-200 hover:scale-105 hover:shadow-neon-green/20">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        mariogrd3@gmail.com
                     </a>
-                    <!-- Teléfono --><a href="tel:+34658722852" class="social-link flex items-center text-lg gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        <span>+34 658722852</span>
+                    
+                    <!-- Botón Teléfono -->
+                    <a href="tel:+34658722852" class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 border-2 border-neon-green text-neon-green font-bold rounded-lg transition-all duration-200 hover:scale-105 hover:bg-neon-green/10 hover:shadow-lg hover:shadow-neon-green/10">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        +34 658722852
                     </a>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
+        
+    </main>
 
-        <!-- Footer --><footer class="text-center py-8 footer-border">
-             <div class="flex justify-center gap-6 mb-4">
-                 <a href="#" class="social-link"> <!-- REEMPLAZA # CON TU LINK DE GITHUB -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.82 1.23.82.71 1.21 1.87.86 2.33.66.07-.51.28-.86.51-1.06-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
+    <!-- ===== FOOTER ===== -->
+    <footer class="py-10 border-t border-border-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div class="text-sm text-gray-400 text-center sm:text-left">
+                &copy; <span id="current-year"></span> Mario Rodriguez Guerra. Todos los derechos reservados.
+            </div>
+            
+            <!-- Enlaces Sociales Footer -->
+            <div class="flex items-center space-x-6">
+                <a href="https://github.com/tu-usuario-github" target="_blank" rel="noopener noreferrer" class="text-neon-green hover:text-white transition-transform duration-200 hover:scale-110" title="GitHub">
+                    <!-- Rellena tu URL de GitHub arriba -->
+                    <i data-lucide="github" class="w-6 h-6"></i>
                 </a>
-                <a href="#" class="social-link"> <!-- REEMPLAZA # CON TU LINK DE LINKEDIN -->
-                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.838 0 1.358-.554 1.358-1.248-.015-.708-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.305 0-1.85.723-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                    </svg>
+                <a href="https://linkedin.com/in/tu-usuario-linkedin" target="_blank" rel="noopener noreferrer" class="text-neon-green hover:text-white transition-transform duration-200 hover:scale-110" title="LinkedIn">
+                    <!-- Rellena tu URL de LinkedIn arriba -->
+                    <i data-lucide="linkedin" class="w-6 h-6"></i>
                 </a>
             </div>
-            <p class="text-zinc-500">
-                &copy; 2025 Mario Rodriguez Guerra.
-            </p>
-        </footer>
+        </div>
+    </footer>
 
-    </div>
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Activa los iconos de Lucide
+        lucide.createIcons();
+
+        // Genera el año actual en el footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Lógica para el menú móvil
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        menuButton.addEventListener('click', () => {
+            const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconClose.classList.toggle('hidden');
+        });
+        
+        // Cierra el menú móvil al hacer clic en un enlace
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuButton.setAttribute('aria-expanded', 'false');
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+
+        // Lógica de Smooth Scroll con ajuste por altura del header
+        // Aunque 'scroll-smooth' de CSS funciona, JS da más control sobre el offset del header fijo
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // Solo previene el comportamiento por defecto para enlaces internos
+                if (href.startsWith('#') && href.length > 1) { 
+                    e.preventDefault();
+                    
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const header = document.querySelector('header');
+                        const headerOffset = header ? header.offsetHeight : 0;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        // Ajusta la posición restando la altura del header y un pequeño margen
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 16; 
+                
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
-
