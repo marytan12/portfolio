@@ -16,28 +16,30 @@
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Configuración personalizada de Tailwind (Estilo iOS) -->
+    <!-- Configuración personalizada de Tailwind (Estilo Apple) -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              // Fuente principal 'Inter', similar a San Francisco de iOS
+              // Fuente principal 'Inter', similar a San Francisco de Apple
               sans: ['Inter', 'sans-serif'],
             },
             colors: {
-              // Paleta de colores estilo iOS Dark Mode
-              'neon-green': '#10b981',     // Verde neón de acento (similar a Messages)
-              'base-bg': '#000000',         // Fondo principal (negro puro)
-              'base-text': '#f2f2f7',       // Texto principal claro
-              'base-text-light': '#8e8e93', // Texto secundario (gris iOS)
-              'card-bg': '#1c1c1e',         // Fondo para tarjetas (gris oscuro iOS)
-              'border-gray': '#38383a',     // Bordes sutiles (separador iOS)
+              // Paleta de colores estilo Apple Dark Mode
+              'apple-blue-link': '#0A84FF',   // Azul para enlaces e iconos (iOS Link Blue)
+              'apple-blue-bg': '#007AFF',     // Azul para fondos de botones (iOS Button Blue)
+              'apple-bg': '#000000',         // Fondo principal (Negro puro)
+              'apple-text': '#f5f5f7',       // Texto principal (Apple Standard)
+              'apple-text-secondary': '#86868b', // Texto secundario (Apple Standard Grey)
+              'apple-card-bg': '#1c1c1e',     // Fondo para tarjetas (iOS Dark Grey)
+              'apple-border': '#38383a',     // Bordes sutiles (iOS Separator)
             },
             borderRadius: {
               '2xl': '1rem', // 16px
               '3xl': '1.5rem', // 24px
               '4xl': '2rem', // 32px
+              'xl': '0.75rem', // 12px (para botones)
             }
           }
         }
@@ -47,8 +49,8 @@
     <!-- Estilos base -->
     <style>
       body {
-        background-color: #000000;
-        color: #f2f2f7;
+        background-color: #000000; /* apple-bg */
+        color: #f5f5f7; /* apple-text */
         font-family: 'Inter', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -61,10 +63,10 @@
       }
     </style>
 </head>
-<body class="bg-base-bg text-base-text">
+<body class="bg-apple-bg text-apple-text">
 
     <!-- ===== HEADER / NAVEGACIÓN ===== -->
-    <header class="sticky top-0 z-50 w-full backdrop-blur-lg bg-base-bg/70 border-b border-border-gray">
+    <header class="sticky top-0 z-50 w-full backdrop-blur-lg bg-apple-bg/70 border-b border-apple-border">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo o Nombre -->
@@ -76,16 +78,16 @@
                 
                 <!-- Enlaces de Navegación (Escritorio) -->
                 <div class="hidden md:flex md:items-center md:space-x-6">
-                    <a href="#inicio" class="px-3 py-2 rounded-md text-sm font-medium text-neon-green hover:text-white transition-colors duration-200">Inicio</a>
-                    <a href="#proyectos" class="px-3 py-2 rounded-md text-sm font-medium text-base-text-light hover:text-neon-green transition-colors duration-200">Proyectos</a>
-                    <a href="#experiencia" class="px-3 py-2 rounded-md text-sm font-medium text-base-text-light hover:text-neon-green transition-colors duration-200">Experiencia</a>
-                    <a href="#sobre-mi" class="px-3 py-2 rounded-md text-sm font-medium text-base-text-light hover:text-neon-green transition-colors duration-200">Sobre Mí</a>
-                    <a href="#contacto" class="px-3 py-2 rounded-md text-sm font-medium text-base-text-light hover:text-neon-green transition-colors duration-200">Contacto</a>
+                    <a href="#inicio" class="px-3 py-2 rounded-md text-sm font-medium text-white transition-colors duration-200">Inicio</a>
+                    <a href="#proyectos" class="px-3 py-2 rounded-md text-sm font-medium text-apple-text-secondary hover:text-apple-blue-link transition-colors duration-200">Proyectos</a>
+                    <a href="#experiencia" class="px-3 py-2 rounded-md text-sm font-medium text-apple-text-secondary hover:text-apple-blue-link transition-colors duration-200">Experiencia</a>
+                    <a href="#sobre-mi" class="px-3 py-2 rounded-md text-sm font-medium text-apple-text-secondary hover:text-apple-blue-link transition-colors duration-200">Sobre Mí</a>
+                    <a href="#contacto" class="px-3 py-2 rounded-md text-sm font-medium text-apple-text-secondary hover:text-apple-blue-link transition-colors duration-200">Contacto</a>
                 </div>
                 
                 <!-- Botón Menú Móvil -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-neon-green hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neon-green" aria-controls="mobile-menu" aria-expanded="false">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-apple-blue-link hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-apple-blue-link" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Abrir menú principal</span>
                         <i id="menu-icon-open" data-lucide="menu"></i>
                         <i id="menu-icon-close" data-lucide="x" class="hidden"></i>
@@ -96,12 +98,12 @@
         
         <!-- Menú Móvil (Oculto por defecto) -->
         <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-border-gray">
-                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-neon-green">Inicio</a>
-                <a href="#proyectos" class="block px-3 py-2 rounded-md text-base font-medium text-base-text-light hover:text-neon-green">Proyectos</a>
-                <a href="#experiencia" class="block px-3 py-2 rounded-md text-base font-medium text-base-text-light hover:text-neon-green">Experiencia</a>
-                <a href="#sobre-mi" class="block px-3 py-2 rounded-md text-base font-medium text-base-text-light hover:text-neon-green">Sobre Mí</a>
-                <a href="#contacto" class="block px-3 py-2 rounded-md text-base font-medium text-base-text-light hover:text-neon-green">Contacto</a>
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-apple-border">
+                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-white">Inicio</a>
+                <a href="#proyectos" class="block px-3 py-2 rounded-md text-base font-medium text-apple-text-secondary hover:text-apple-blue-link">Proyectos</a>
+                <a href="#experiencia" class="block px-3 py-2 rounded-md text-base font-medium text-apple-text-secondary hover:text-apple-blue-link">Experiencia</a>
+                <a href="#sobre-mi" class="block px-3 py-2 rounded-md text-base font-medium text-apple-text-secondary hover:text-apple-blue-link">Sobre Mí</a>
+                <a href="#contacto" class="block px-3 py-2 rounded-md text-base font-medium text-apple-text-secondary hover:text-apple-blue-link">Contacto</a>
             </div>
         </div>
     </header>
@@ -112,19 +114,19 @@
         <!-- ===== SECCIÓN INICIO (HERO) ===== -->
         <section id="inicio" class="min-h-screen flex items-center justify-center text-center px-4 py-20">
             <div class="max-w-4xl mx-auto">
-                <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight tracking-tight">
                     Mario Rodriguez Guerra
                 </h1>
-                <p class="mt-4 text-2xl sm:text-3xl md:text-4xl font-medium text-neon-green">
+                <p class="mt-6 text-2xl sm:text-3xl font-normal text-apple-text-secondary">
                     Técnico de Sistemas y Desarrollador Web
                 </p>
                 
                 <!-- Enlaces Sociales -->
                 <div class="mt-10 flex justify-center items-center space-x-6">
-                    <a href="mailto:mariogrd3@gmail.com" class="text-neon-green hover:text-white transition-transform duration-200 hover:scale-110" title="Email">
+                    <a href="mailto:mariogrd3@gmail.com" class="text-apple-text-secondary hover:text-apple-blue-link transition-all duration-200 hover:scale-110" title="Email">
                         <i data-lucide="mail" class="w-7 h-7"></i>
                     </a>
-                    <a href="https://github.com/marytan12" target="_blank" rel="noopener noreferrer" class="text-neon-green hover:text-white transition-transform duration-200 hover:scale-110" title="GitHub">
+                    <a href="https://github.com/marytan12" target="_blank" rel="noopener noreferrer" class="text-apple-text-secondary hover:text-apple-blue-link transition-all duration-200 hover:scale-110" title="GitHub">
                         <i data-lucide="github" class="w-7 h-7"></i>
                     </a>
                     <!-- Botón de LinkedIn eliminado -->
@@ -135,57 +137,57 @@
         <!-- ===== SECCIÓN PROYECTOS ===== -->
         <section id="proyectos" class="py-20 sm:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16 tracking-tight">
                     Proyectos
                 </h2>
                 
                 <!-- Subsección: Proyectos Personales -->
-                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left">
+                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left tracking-tight">
                     Proyectos Personales
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     
                     <!-- Proyecto 1: Spotif-sooty -->
-                    <a href="https://Spotif-sooty.vercel.app" target="_blank" rel="noopener noreferrer" class="group block bg-card-bg p-6 rounded-2xl border border-border-gray transition-all duration-300 hover:border-neon-green/70 hover:shadow-lg hover:shadow-neon-green/10 hover:scale-[1.02]">
-                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-neon-green transition-colors">Spotif-sooty</h4>
-                        <p class="text-base-text-light mb-4">
+                    <a href="https://Spotif-sooty.vercel.app" target="_blank" rel="noopener noreferrer" class="group block bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-apple-blue-link transition-colors">Spotif-sooty</h4>
+                        <p class="text-apple-text-secondary mb-4">
                             Aplicación web personal que interactúa con la API de Spotify para visualización y gestión de música, ofreciendo una experiencia personalizada.
                         </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-semibold px-3 py-1 rounded-full">Desarrollo Web</span>
-                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-semibold px-3 py-1 rounded-full">API</span>
-                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-semibold px-3 py-1 rounded-full">React</span>
+                            <span class="inline-block bg-apple-blue-bg/20 text-apple-blue-link text-xs font-semibold px-3 py-1 rounded-full">Desarrollo Web</span>
+                            <span class="inline-block bg-apple-blue-bg/20 text-apple-blue-link text-xs font-semibold px-3 py-1 rounded-full">API</span>
+                            <span class="inline-block bg-apple-blue-bg/20 text-apple-blue-link text-xs font-semibold px-3 py-1 rounded-full">React</span>
                         </div>
                     </a>
                     
                     <!-- Proyecto 2: Flowtur.es -->
-                    <a href="https://flowtur.es" target="_blank" rel="noopener noreferrer" class="group block bg-card-bg p-6 rounded-2xl border border-border-gray transition-all duration-300 hover:border-neon-green/70 hover:shadow-lg hover:shadow-neon-green/10 hover:scale-[1.02]">
-                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-neon-green transition-colors">Flowtur.es</h4>
-                        <p class="text-base-text-light mb-4">
+                    <a href="https://flowtur.es" target="_blank" rel="noopener noreferrer" class="group block bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-apple-blue-link transition-colors">Flowtur.es</h4>
+                        <p class="text-apple-text-secondary mb-4">
                             Creación y desarrollo de la web profesional para Flowtur. Encargado del diseño, desarrollo y mantenimiento completo de la plataforma.
                         </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-semibold px-3 py-1 rounded-full">Desarrollo Web</span>
-                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-semibold px-3 py-1 rounded-full">Diseño Web</span>
+                            <span class="inline-block bg-apple-blue-bg/20 text-apple-blue-link text-xs font-semibold px-3 py-1 rounded-full">Desarrollo Web</span>
+                            <span class="inline-block bg-apple-blue-bg/20 text-apple-blue-link text-xs font-semibold px-3 py-1 rounded-full">Diseño Web</span>
                         </div>
                     </a>
                 </div>
                 
                 <!-- Subsección: Otros Proyectos -->
-                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left">
+                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left tracking-tight">
                     Otros Proyectos
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Proyecto 3: Servidor GTA 5 -->
-                    <div class="group bg-card-bg p-6 rounded-2xl border border-border-gray transition-all duration-300 hover:border-neon-green/70 hover:shadow-lg hover:shadow-neon-green/10 hover:scale-[1.02]">
+                    <div class="group bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700">
                         <h4 class="text-xl font-bold text-white mb-2">Administrador de Servidor GTA 5</h4>
-                        <p class="text-base-text-light mb-4">
+                        <p class="text-apple-text-secondary mb-4">
                             Creación, configuración y administración de un servidor de videojuego (GTA 5 FiveM), incluyendo gestión de comunidad, mantenimiento técnico y desarrollo de scripts personalizados.
                         </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-semibold px-3 py-1 rounded-full">Gestión de Servidor</span>
-                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-semibold px-3 py-1 rounded-full">FiveM</span>
-                            <span class="inline-block bg-neon-green/10 text-neon-green text-xs font-semibold px-3 py-1 rounded-full">Comunidad</span>
+                            <span class="inline-block bg-apple-blue-bg/20 text-apple-blue-link text-xs font-semibold px-3 py-1 rounded-full">Gestión de Servidor</span>
+                            <span class="inline-block bg-apple-blue-bg/20 text-apple-blue-link text-xs font-semibold px-3 py-1 rounded-full">FiveM</span>
+                            <span class="inline-block bg-apple-blue-bg/20 text-apple-blue-link text-xs font-semibold px-3 py-1 rounded-full">Comunidad</span>
                         </div>
                     </div>
                 </div>
@@ -195,89 +197,89 @@
         <!-- ===== SECCIÓN EXPERIENCIA Y FORMACIÓN ===== -->
         <section id="experiencia" class="py-20 sm:py-24">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16 tracking-tight">
                     Experiencia y Formación
                 </h2>
                 
                 <!-- Timeline -->
-                <div class="relative border-l-2 border-border-gray ml-4 sm:ml-0">
+                <div class="relative border-l-2 border-apple-border ml-4 sm:ml-0">
                     
                     <!-- Item 1: Prácticas SMR -->
                     <div class="mb-10 ml-10">
-                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
-                            <i data-lucide="briefcase" class="w-4 h-4 text-black"></i>
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-white"></i>
                         </span>
                         <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
                             Prácticas SMR (510 Horas)
-                            <span class="bg-neon-green/10 text-neon-green text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
+                            <span class="bg-apple-blue-bg/20 text-apple-blue-link text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
                         </h3>
-                        <time class="block mb-2 text-sm font-normal leading-none text-base-text-light">Previsto Feb. 2026</time>
-                        <p class="mb-4 text-base font-normal text-base-text-light">Experiencia profesional (prácticas) como parte del grado medio.</p>
+                        <time class="block mb-2 text-sm font-normal leading-none text-apple-text-secondary">Previsto Feb. 2026</time>
+                        <p class="mb-4 text-base font-normal text-apple-text-secondary">Experiencia profesional (prácticas) como parte del grado medio.</p>
                     </div>
 
                     <!-- Item 2: Flowtur.es -->
                     <div class="mb-10 ml-10">
-                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
-                            <i data-lucide="briefcase" class="w-4 h-4 text-black"></i>
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-white"></i>
                         </span>
                         <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
                             Desarrollador Web (Flowtur.es)
-                            <span class="bg-neon-green/10 text-neon-green text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
+                            <span class="bg-apple-blue-bg/20 text-apple-blue-link text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
                         </h3>
-                        <time class="block mb-2 text-sm font-normal leading-none text-base-text-light">Jun. 2025 - Actual</time>
-                        <p class="mb-4 text-base font-normal text-base-text-light">Desarrollo y mantenimiento de la plataforma web profesional Flowtur.es.</p>
+                        <time class="block mb-2 text-sm font-normal leading-none text-apple-text-secondary">Jun. 2025 - Actual</time>
+                        <p class="mb-4 text-base font-normal text-apple-text-secondary">Desarrollo y mantenimiento de la plataforma web profesional Flowtur.es.</p>
                     </div>
 
                     <!-- Item 3: Admin Servidor GTA -->
                     <div class="mb-10 ml-10">
-                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
-                            <i data-lucide="briefcase" class="w-4 h-4 text-black"></i>
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-white"></i>
                         </span>
                         <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
                             Administrador Servidor Videojuego
-                            <span class="bg-neon-green/10 text-neon-green text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
+                            <span class="bg-apple-blue-bg/20 text-apple-blue-link text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Experiencia</span>
                         </h3>
-                        <time class="block mb-2 text-sm font-normal leading-none text-base-text-light">Actual</time>
-                        <p class="mb-4 text-base font-normal text-base-text-light">Gestión de servidor GTA 5 (FiveM) y comunidad.</p>
+                        <time class="block mb-2 text-sm font-normal leading-none text-apple-text-secondary">Actual</time>
+                        <p class="mb-4 text-base font-normal text-apple-text-secondary">Gestión de servidor GTA 5 (FiveM) y comunidad.</p>
                     </div>
 
                     <!-- Item 4: Google IA -->
                     <div class="mb-10 ml-10">
-                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
-                            <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
+                            <i data-lucide="award" class="w-4 h-4 text-white"></i>
                         </span>
                         <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
                             Google: Inteligencia Artificial y productividad
-                            <span class="bg-blue-900/50 text-blue-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
+                            <span class="bg-gray-700/50 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
                         </h3>
-                        <time class="block mb-2 text-sm font-normal leading-none text-base-text-light">Abr. 2025</time>
-                        <p class="mb-4 text-base font-normal text-base-text-light">Santander Open Academy.</p>
+                        <time class="block mb-2 text-sm font-normal leading-none text-apple-text-secondary">Abr. 2025</time>
+                        <p class="mb-4 text-base font-normal text-apple-text-secondary">Santander Open Academy.</p>
                     </div>
 
                     <!-- Item 5: CFGM SMR -->
                     <div class="mb-10 ml-10">
-                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
-                            <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
+                            <i data-lucide="award" class="w-4 h-4 text-white"></i>
                         </span>
                         <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
                             CFGM Técnico en Sistemas Microinformáticos y Redes
-                            <span class="bg-blue-900/50 text-blue-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
+                            <span class="bg-gray-700/50 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
                         </h3>
-                        <time class="block mb-2 text-sm font-normal leading-none text-base-text-light">Sep. 2024 - Actual</time>
-                        <p class="mb-4 text-base font-normal text-base-text-light">Centro Didáctico de Formación Integral S.L.</p>
+                        <time class="block mb-2 text-sm font-normal leading-none text-apple-text-secondary">Sep. 2024 - Actual</time>
+                        <p class="mb-4 text-base font-normal text-apple-text-secondary">Centro Didáctico de Formación Integral S.L.</p>
                     </div>
 
                     <!-- Item 6: PRL -->
                     <div class="ml-10">
-                        <span class="absolute flex items-center justify-center w-8 h-8 bg-neon-green rounded-full -left-4 ring-8 ring-base-bg">
-                            <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
+                            <i data-lucide="award" class="w-4 h-4 text-white"></i>
                         </span>
                         <h3 class="flex items-center mb-1 text-xl font-semibold text-white">
                             Curso Básico de Prevención de Riesgos Laborales
-                            <span class="bg-blue-900/50 text-blue-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
+                            <span class="bg-gray-700/50 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Formación</span>
                         </h3>
-                        <time class="block mb-2 text-sm font-normal leading-none text-base-text-light">Sep. 2024 - Feb. 2025</time>
-                        <p class="mb-4 text-base font-normal text-base-text-light">Centro Didáctico de Formación Integral S.L.</p>
+                        <time class="block mb-2 text-sm font-normal leading-none text-apple-text-secondary">Sep. 2024 - Feb. 2025</time>
+                        <p class="mb-4 text-base font-normal text-apple-text-secondary">Centro Didáctico de Formación Integral S.L.</p>
                     </div>
                     
                 </div>
@@ -285,19 +287,17 @@
         </section>
         
         <!-- ===== SECCIÓN SOBRE MÍ ===== -->
-        <section id="sobre-mi" class="py-20 sm:py-24 bg-card-bg">
+        <section id="sobre-mi" class="py-20 sm:py-24 bg-apple-card-bg">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <!-- Acento decorativo -->
-                <div class="relative w-24 h-1 bg-neon-green rounded-full mx-auto mb-8"></div>
                 
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-8">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-8 tracking-tight">
                     Sobre Mí
                 </h2>
                 
-                <p class="text-lg sm:text-xl text-base-text-light leading-relaxed mb-6">
+                <p class="text-lg sm:text-xl text-apple-text leading-relaxed mb-6">
                     Soy un estudiante de 18 años cursando el Grado Medio en Sistemas Microinformáticos y Redes. Mi objetivo es continuar mi formación con un Grado Superior en Administración de Sistemas Informáticos en Red.
                 </p>
-                <p class="text-lg sm:text-xl text-base-text-light leading-relaxed">
+                <p class="text-lg sm:text-xl text-apple-text-secondary leading-relaxed">
                     Me considero una persona puntual, detallista y con buenas habilidades de comunicación. Me apasiona la tecnología, el desarrollo de aplicaciones y la administración de sistemas, buscando siempre aprender y aplicar nuevos conocimientos.
                 </p>
             </div>
@@ -306,22 +306,22 @@
         <!-- ===== SECCIÓN CONTACTO ===== -->
         <section id="contacto" class="py-20 sm:py-24">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-6">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-6 tracking-tight">
                     Contacto
                 </h2>
-                <p class="text-lg sm:text-xl text-base-text-light mb-12">
+                <p class="text-lg sm:text-xl text-apple-text-secondary mb-12">
                     Estoy buscando activamente nuevas oportunidades y me encantaría saber de ti.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
                     <!-- Botón Email -->
-                    <a href="mailto:mariogrd3@gmail.com" class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3 bg-neon-green text-base-bg font-semibold rounded-full shadow-lg shadow-neon-green/10 transition-transform duration-200 hover:scale-[1.03] hover:shadow-neon-green/20">
+                    <a href="mailto:mariogrd3@gmail.com" class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3 bg-apple-blue-bg text-white font-semibold rounded-xl transition-colors duration-200 hover:bg-blue-600">
                         <i data-lucide="mail" class="w-5 h-5"></i>
                         mariogrd3@gmail.com
                     </a>
                     
                     <!-- Botón Teléfono -->
-                    <a href="tel:+34658722852" class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3 border-2 border-neon-green text-neon-green font-semibold rounded-full transition-all duration-200 hover:scale-[1.03] hover:bg-neon-green/10 hover:shadow-lg hover:shadow-neon-green/10">
+                    <a href="tel:+34658722852" class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3 border-2 border-apple-blue-link text-apple-blue-link font-semibold rounded-xl transition-all duration-200 hover:bg-apple-blue-link/10">
                         <i data-lucide="phone" class="w-5 h-5"></i>
                         +34 658722852
                     </a>
@@ -332,15 +332,15 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="py-10 border-t border-border-gray">
+    <footer class="py-10 border-t border-apple-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
-            <div class="text-sm text-base-text-light text-center sm:text-left">
+            <div class="text-sm text-apple-text-secondary text-center sm:text-left">
                 &copy; <span id="current-year"></span> Mario Rodriguez Guerra. Todos los derechos reservados.
             </div>
             
             <!-- Enlaces Sociales Footer -->
             <div class="flex items-center">
-                <a href="https://github.com/marytan12" target="_blank" rel="noopener noreferrer" class="text-neon-green hover:text-white transition-transform duration-200 hover:scale-110" title="GitHub">
+                <a href="https://github.com/marytan12" target="_blank" rel="noopener noreferrer" class="text-apple-text-secondary hover:text-apple-blue-link transition-all duration-200 hover:scale-110" title="GitHub">
                     <i data-lucide="github" class="w-6 h-6"></i>
                 </a>
                 <!-- Botón de LinkedIn eliminado -->
