@@ -61,6 +61,22 @@
         height: 1.25rem; /* 20px */
         stroke-width: 2;
       }
+
+      /* ===== ESTILOS PARA ANIMACIÓN DE SCROLL ===== */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(40px);
+        /* Transición suave para opacidad y transformación */
+        transition-property: opacity, transform;
+        transition-duration: 700ms;
+        /* Curva de easing para un efecto más suave (Apple-like) */
+        transition-timing-function: cubic-bezier(0.17, 0.55, 0.55, 1); 
+      }
+      
+      .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
 </head>
 <body class="bg-apple-bg text-apple-text">
@@ -112,6 +128,7 @@
     <main>
         
         <!-- ===== SECCIÓN INICIO (HERO) ===== -->
+        <!-- No se anima, ya que es visible al cargar -->
         <section id="inicio" class="min-h-screen flex items-center justify-center text-center px-4 py-20">
             <div class="max-w-4xl mx-auto">
                 <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight tracking-tight">
@@ -129,26 +146,25 @@
                     <a href="https://github.com/marytan12" target="_blank" rel="noopener noreferrer" class="text-apple-text-secondary hover:text-apple-blue-link transition-all duration-200 hover:scale-110" title="GitHub">
                         <i data-lucide="github" class="w-7 h-7"></i>
                     </a>
-                    <!-- Botón de LinkedIn eliminado -->
                 </div>
             </div>
         </section>
 
         <!-- ===== SECCIÓN PROYECTOS ===== -->
-        <section id="proyectos" class="py-20 sm:py-24">
+        <section id="proyectos" class="py-20 sm:py-24 overflow-hidden"> <!-- overflow-hidden para contener animaciones -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16 tracking-tight">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16 tracking-tight animate-on-scroll">
                     Proyectos
                 </h2>
                 
                 <!-- Subsección: Proyectos Personales -->
-                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left tracking-tight">
+                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left tracking-tight animate-on-scroll">
                     Proyectos Personales
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     
                     <!-- Proyecto 1: Spotif-sooty -->
-                    <a href="https://Spotif-sooty.vercel.app" target="_blank" rel="noopener noreferrer" class="group block bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700">
+                    <a href="https://Spotif-sooty.vercel.app" target="_blank" rel="noopener noreferrer" class="group block bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700 animate-on-scroll" style="transition-delay: 100ms;">
                         <h4 class="text-xl font-bold text-white mb-2 group-hover:text-apple-blue-link transition-colors">Spotif-sooty</h4>
                         <p class="text-apple-text-secondary mb-4">
                             Aplicación web personal que interactúa con la API de Spotify para visualización y gestión de música, ofreciendo una experiencia personalizada.
@@ -161,7 +177,7 @@
                     </a>
                     
                     <!-- Proyecto 2: Flowtur.es -->
-                    <a href="https://flowtur.es" target="_blank" rel="noopener noreferrer" class="group block bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700">
+                    <a href="https://flowtur.es" target="_blank" rel="noopener noreferrer" class="group block bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700 animate-on-scroll" style="transition-delay: 200ms;">
                         <h4 class="text-xl font-bold text-white mb-2 group-hover:text-apple-blue-link transition-colors">Flowtur.es</h4>
                         <p class="text-apple-text-secondary mb-4">
                             Creación y desarrollo de la web profesional para Flowtur. Encargado del diseño, desarrollo y mantenimiento completo de la plataforma.
@@ -174,12 +190,12 @@
                 </div>
                 
                 <!-- Subsección: Otros Proyectos -->
-                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left tracking-tight">
+                <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center sm:text-left tracking-tight animate-on-scroll">
                     Otros Proyectos
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Proyecto 3: Servidor GTA 5 -->
-                    <div class="group bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700">
+                    <div class="group bg-apple-card-bg p-6 rounded-2xl border border-apple-border transition-transform duration-300 transform hover:scale-[1.02] hover:border-gray-700 animate-on-scroll" style="transition-delay: 100ms;">
                         <h4 class="text-xl font-bold text-white mb-2">Administrador de Servidor GTA 5</h4>
                         <p class="text-apple-text-secondary mb-4">
                             Creación, configuración y administración de un servidor de videojuego (GTA 5 FiveM), incluyendo gestión de comunidad, mantenimiento técnico y desarrollo de scripts personalizados.
@@ -195,9 +211,9 @@
         </section>
         
         <!-- ===== SECCIÓN EXPERIENCIA Y FORMACIÓN ===== -->
-        <section id="experiencia" class="py-20 sm:py-24">
+        <section id="experiencia" class="py-20 sm:py-24 overflow-hidden">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16 tracking-tight">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-16 tracking-tight animate-on-scroll">
                     Experiencia y Formación
                 </h2>
                 
@@ -205,7 +221,7 @@
                 <div class="relative border-l-2 border-apple-border ml-4 sm:ml-0">
                     
                     <!-- Item 1: Prácticas SMR -->
-                    <div class="mb-10 ml-10">
+                    <div class="mb-10 ml-10 animate-on-scroll" style="transition-delay: 100ms;">
                         <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
                             <i data-lucide="briefcase" class="w-4 h-4 text-white"></i>
                         </span>
@@ -218,7 +234,7 @@
                     </div>
 
                     <!-- Item 2: Flowtur.es -->
-                    <div class="mb-10 ml-10">
+                    <div class="mb-10 ml-10 animate-on-scroll" style="transition-delay: 150ms;">
                         <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
                             <i data-lucide="briefcase" class="w-4 h-4 text-white"></i>
                         </span>
@@ -231,7 +247,7 @@
                     </div>
 
                     <!-- Item 3: Admin Servidor GTA -->
-                    <div class="mb-10 ml-10">
+                    <div class="mb-10 ml-10 animate-on-scroll" style="transition-delay: 200ms;">
                         <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
                             <i data-lucide="briefcase" class="w-4 h-4 text-white"></i>
                         </span>
@@ -244,7 +260,7 @@
                     </div>
 
                     <!-- Item 4: Google IA -->
-                    <div class="mb-10 ml-10">
+                    <div class="mb-10 ml-10 animate-on-scroll" style="transition-delay: 250ms;">
                         <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
                             <i data-lucide="award" class="w-4 h-4 text-white"></i>
                         </span>
@@ -257,7 +273,7 @@
                     </div>
 
                     <!-- Item 5: CFGM SMR -->
-                    <div class="mb-10 ml-10">
+                    <div class="mb-10 ml-10 animate-on-scroll" style="transition-delay: 300ms;">
                         <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
                             <i data-lucide="award" class="w-4 h-4 text-white"></i>
                         </span>
@@ -270,7 +286,7 @@
                     </div>
 
                     <!-- Item 6: PRL -->
-                    <div class="ml-10">
+                    <div class="ml-10 animate-on-scroll" style="transition-delay: 350ms;">
                         <span class="absolute flex items-center justify-center w-8 h-8 bg-apple-blue-bg rounded-full -left-4 ring-8 ring-apple-bg">
                             <i data-lucide="award" class="w-4 h-4 text-white"></i>
                         </span>
@@ -287,33 +303,33 @@
         </section>
         
         <!-- ===== SECCIÓN SOBRE MÍ ===== -->
-        <section id="sobre-mi" class="py-20 sm:py-24 bg-apple-card-bg">
+        <section id="sobre-mi" class="py-20 sm:py-24 bg-apple-card-bg overflow-hidden">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-8 tracking-tight">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-8 tracking-tight animate-on-scroll">
                     Sobre Mí
                 </h2>
                 
-                <p class="text-lg sm:text-xl text-apple-text leading-relaxed mb-6">
+                <p class="text-lg sm:text-xl text-apple-text leading-relaxed mb-6 animate-on-scroll" style="transition-delay: 100ms;">
                     Soy un estudiante de 18 años cursando el Grado Medio en Sistemas Microinformáticos y Redes. Mi objetivo es continuar mi formación con un Grado Superior en Administración de Sistemas Informáticos en Red.
                 </p>
-                <p class="text-lg sm:text-xl text-apple-text-secondary leading-relaxed">
+                <p class="text-lg sm:text-xl text-apple-text-secondary leading-relaxed animate-on-scroll" style="transition-delay: 200ms;">
                     Me considero una persona puntual, detallista y con buenas habilidades de comunicación. Me apasiona la tecnología, el desarrollo de aplicaciones y la administración de sistemas, buscando siempre aprender y aplicar nuevos conocimientos.
                 </p>
             </div>
         </section>
         
         <!-- ===== SECCIÓN CONTACTO ===== -->
-        <section id="contacto" class="py-20 sm:py-24">
+        <section id="contacto" class="py-20 sm:py-24 overflow-hidden">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-6 tracking-tight">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white text-center mb-6 tracking-tight animate-on-scroll">
                     Contacto
                 </h2>
-                <p class="text-lg sm:text-xl text-apple-text-secondary mb-12">
+                <p class="text-lg sm:text-xl text-apple-text-secondary mb-12 animate-on-scroll" style="transition-delay: 100ms;">
                     Estoy buscando activamente nuevas oportunidades y me encantaría saber de ti.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 animate-on-scroll" style="transition-delay: 200ms;">
                     <!-- Botón Email -->
                     <a href="mailto:mariogrd3@gmail.com" class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3 bg-apple-blue-bg text-white font-semibold rounded-xl transition-colors duration-200 hover:bg-blue-600">
                         <i data-lucide="mail" class="w-5 h-5"></i>
@@ -343,7 +359,6 @@
                 <a href="https://github.com/marytan12" target="_blank" rel="noopener noreferrer" class="text-apple-text-secondary hover:text-apple-blue-link transition-all duration-200 hover:scale-110" title="GitHub">
                     <i data-lucide="github" class="w-6 h-6"></i>
                 </a>
-                <!-- Botón de LinkedIn eliminado -->
             </div>
         </div>
     </footer>
@@ -385,7 +400,6 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
-                // Solo previene el comportamiento por defecto para enlaces internos
                 if (href.startsWith('#') && href.length > 1) { 
                     e.preventDefault();
                     
@@ -396,7 +410,6 @@
                         const header = document.querySelector('header');
                         const headerOffset = header ? header.offsetHeight : 0;
                         const elementPosition = targetElement.getBoundingClientRect().top;
-                        // Ajusta la posición restando la altura del header y un pequeño margen
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 16; 
                 
                         window.scrollTo({
@@ -407,6 +420,43 @@
                 }
             });
         });
+
+        // ===== LÓGICA DE ANIMACIÓN POR SCROLL =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            // Comprueba si IntersectionObserver es compatible
+            if ("IntersectionObserver" in window) {
+                // threshold: 0.1 significa que la animación se dispara
+                // cuando el 10% del elemento es visible.
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Elemento entra en la vista: añadir clase
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            // Elemento sale de la vista: quitar clase
+                            entry.target.classList.remove('is-visible');
+                        }
+                    });
+                }, {
+                    root: null, // relativo al viewport
+                    rootMargin: '0px',
+                    threshold: 0.1 // 10% de visibilidad para disparar
+                });
+
+                // Observar cada elemento
+                animatedElements.forEach(el => {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback para navegadores antiguos: simplemente muestra todo
+                animatedElements.forEach(el => {
+                    el.classList.add('is-visible');
+                });
+            }
+        });
+
     </script>
 
 </body>
